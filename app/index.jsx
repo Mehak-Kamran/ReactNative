@@ -7,10 +7,11 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
 
+
 export default function index() {
   return (
     <SafeAreaView style={{backgroundColor:"#161622",height:"100%"}}>
-      <ScrollView contentContainerStyle={
+      <ScrollView  contentContainerStyle={
              {height:"100%"}
       }>
         <View style={{width:"100%",height:"100%",display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -50,8 +51,8 @@ export default function index() {
 
               <CustomButton
                  title="Continue with Email"
-                 handlePress={()=>{ router.push("/sign-in")}}
-                 containerStyles="w-[300px] mt-7 "
+                 handlePress={()=>{ router.push("/signin")}}
+                 containerStyles="w-[200px] mt-7 "
               />
 
              
