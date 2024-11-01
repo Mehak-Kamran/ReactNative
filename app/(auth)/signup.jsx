@@ -1,13 +1,36 @@
-import { View, Text, ScrollView ,Image} from 'react-native'
+import { View, Text, ScrollView ,Image, Alert} from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../constants'
 import FormField from '../../components/FormField'
 import { useState } from 'react'
 import CustomButton from '../../components/CustomButton'
-import { Link } from 'expo-router'
+import { Link,router } from 'expo-router'
+import { createUser } from '../../lib/appwrite'
+
+
 const Signup = () => {
   const [form,setform]=useState({email:"",password:"",username:""})
+  const [issubmit,setsubmit]=useState(false)
+
+  const submit=()=>{ 
+    if(form.email===""  || form.password==="" || form.username===""){
+      Alert.alert("Error","Please enter input in all fields")
+    }
+    setsubmit(true)
+    try{
+      const res=createUser(form.email,form.password,form.username)
+      router.replace("/home")
+    }
+    catch(error){
+      Alert.alert("Error",error.message)
+    }finally{
+      setsubmit(false)
+    }
+    
+    }
+
+  
 
   return (
   
@@ -72,7 +95,7 @@ const Signup = () => {
 
 <CustomButton
                  title="Register"
-                 handlePress={()=>{ router.push("/sign")}}
+                 handlePress={submit}
                  containerStyles="w-[400px] mt-7 "
               />
 
